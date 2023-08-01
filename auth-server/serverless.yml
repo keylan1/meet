@@ -18,7 +18,7 @@ service: auth-server
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: '3'
+# frameworkVersion: '3'
 
 provider:
   name: aws
@@ -29,9 +29,9 @@ provider:
   region: eu-central-1
   timeout: 30 # optional, in seconds, default is 6
   environment: #envionment variables
-  CLIENT_ID: ${file(config.json):CLIENT_ID} #look in the same folder for the config.json file and assign the value of CLIENT_ID to the env variable of same name
-  CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
-  CALENDAR_ID: ${file(config.json):CALENDAR_ID}
+    CLIENT_ID: ${file(config.json):CLIENT_ID} #look in the same folder for the config.json file and assign the value of CLIENT_ID to the env variable of same name
+    CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
+    CALENDAR_ID: ${file(config.json):CALENDAR_ID}
 
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
@@ -68,8 +68,8 @@ functions:
     handler: handler.getAuthURL
     events:
       - http: #event that will trigger getAuthURl
-          path: <api_path> #path via which getAuthURL interacts with API
-          method: <get, post, put, delete> #type of communication that can be made to getAuthURL
+          path: api/get-auth-url #path via which getAuthURL interacts with API
+          method: get #type of communication that can be made to getAuthURL
 
 
   # hello:
