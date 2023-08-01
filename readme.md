@@ -119,3 +119,7 @@ Then: The app should display an interactive chart or graph showing upcoming even
 Given: The chart of events by city is open
 When: The user clicks on a city
 Then: The chart redirects to display the events in the selected city
+
+## Serverless functions
+
+For the Meet app, serverless functions are used for the backend server logic, authorization and API integraton. When users interact with the app, they authorize via their gmail account and a serverless function. The users' requests go to serverless functions, which process the data and send it back to the frontend. Additionally, the app's database is integrated with the Google Calendar API, allowing for the storage and management of event information efficiently. This setup ensures the app runs smoothly, scales easily, and reduces unnecessary complexity in managing servers.
