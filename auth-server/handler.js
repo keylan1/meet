@@ -40,6 +40,7 @@ module.exports.getAccessToken = async (event) => {
       if (error) {
         return reject(error);
       }
+      console.log(code);
       return resolve(response);
     });
   })
