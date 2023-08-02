@@ -23,7 +23,7 @@ module.exports.getAuthURL = async () => {
   return {
     statusCode: 200,
     headers: {
-      'Acces-Control-Allow-Origin': '*',
+      'Acces-Control-Allow-Origin': `*`,
       'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify({
@@ -47,7 +47,7 @@ module.exports.getAccessToken = async (event) => {
       return {
         statusCode: 200,
         headers: {
-          'Acces-Control-Allow-Origin': '*', //cors allow requests from any domain
+          'Acces-Control-Allow-Origin': `*`, //cors allow requests from any domain
           'Access-Control-Allow-Credentials': true, //allow credentials to be included in req
         },
         body: JSON.stringify(results),
