@@ -80,7 +80,7 @@ functions:
     handler: handler.getCalendarEvents
     events:
       - http:
-          path: api/events
+          path: api/get-events/{access_token}
           method: get
 
   # hello:
