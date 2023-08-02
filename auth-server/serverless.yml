@@ -70,7 +70,18 @@ functions:
       - http: #event that will trigger getAuthURl
           path: api/get-auth-url #path via which getAuthURL interacts with API
           method: get #type of communication that can be made to getAuthURL
-
+  getAccessToken:
+    handler: handler.getAccessToken
+    events:
+      - http:
+          path: api/token/{code}
+          method: get
+  getCalendarEvents:
+    handler: handler.getCalendarEvents
+    events:
+      - http:
+          path: api/events
+          method: get
 
   # hello:
   #   handler: handler.hello

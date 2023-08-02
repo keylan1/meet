@@ -31,3 +31,32 @@ module.exports.getAuthURL = async () => {
     }),
   };
 };
+
+module.exports.getAccessToken = async (event) => {
+  const code = decodeURIComponent(`${event.pathParameters.code}`); //referring to {code} from serverless
+
+  return new Promise((resolve, reject) => {
+    oAuth2Client.getToken(code, (error, response) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(response);
+    });
+  })
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Acces-Control-Allow-Origin': '*', //cors allow requests from any domain
+          'Access-Control-Allow-Credentials': true, //allow credentials to be included in req
+        },
+        body: JSON.stringify(results),
+      };
+    })
+    .catch((error) => {
+      return {
+        statusCode: 500,
+        body: JSON.stringify(error),
+      };
+    });
+};
