@@ -26,7 +26,7 @@ const removeQuery = () => {
       window.location.pathname;
     window.history.pushState('', '', newurl);
   } else {
-    newurl = window.location.protocol + '//' + window.location.hostname;
+    newurl = window.location.protocol + '//' + window.location.host;
     window.history.pushState('', '', newurl);
   }
 };
@@ -70,7 +70,7 @@ export const getEvents = async () => {
   if (token) {
     removeQuery();
     const url =
-      'https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' +
+      `https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events` +
       '/' +
       token;
     const response = await fetch(url);
@@ -91,7 +91,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get('code');
     if (!code) {
       const response = await fetch(
-        'https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
+        `https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url`
       );
       const result = await response.json();
       const { authUrl } = result;
