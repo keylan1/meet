@@ -6,7 +6,9 @@ import App from '../App';
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsComponent;
   beforeEach(() => {
-    NumberOfEventsComponent = render(<NumberOfEvents />);
+    NumberOfEventsComponent = render(
+      <NumberOfEvents setCurrentNOE={() => {}} />
+    );
   });
 
   test('renders textbox', () => {
@@ -38,6 +40,7 @@ describe('<NumberOfEvents integration', () => {
 
     const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
     const numberTextBox = within(NumberOfEventsDOM).queryByRole('textbox');
+
     await user.type(numberTextBox, '{backspace}{backspace}10');
 
     const EventListDOM = AppDOM.querySelector('#event-list');
