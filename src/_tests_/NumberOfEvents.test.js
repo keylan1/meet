@@ -1,6 +1,7 @@
-import { render } from '@testing-library/react';
+import { render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import NumberOfEvents from '../components/NumberOfEvents';
+import App from '../App';
 
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsComponent;
@@ -26,5 +27,22 @@ describe('<NumberOfEvents /> component', () => {
     await user.type(numberTextBox, '{backspace}{backspace}10');
 
     expect(numberTextBox.value).toBe('10');
+  });
+});
+
+describe('<NumberOfEvents integration', () => {
+  test('user can change # of evenst displayed', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const numberTextBox = within(NumberOfEventsDOM).queryByRole('textbox');
+    await user.type(numberTextBox, '{backspace}{backspace}10');
+
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const eventListItems = within(EventListDOM).queryAllByRole('listitem');
+
+    expect(eventListItems.length).toBe(10);
   });
 });

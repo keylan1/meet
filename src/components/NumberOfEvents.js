@@ -1,20 +1,16 @@
-import { useState } from 'react';
-
-const NumberOfEvents = () => {
-  const [query, setQuery] = useState(32);
-
+const NumberOfEvents = ({ setCurrentNOE }) => {
   const handleInputChanged = (e) => {
     const value = e.target.value;
-    setQuery(value);
+    setCurrentNOE(value);
   };
 
   return (
-    <div id="numbers-events">
+    <div id="number-of-events">
       <input
         type="text"
         className="number"
         placeholder="Number of events"
-        value={query}
+        defaultValue={32}
         onChange={handleInputChanged}
       />
     </div>

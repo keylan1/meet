@@ -16,7 +16,7 @@ describe('<App /> component', () => {
   });
 
   test('render number of events', () => {
-    expect(AppDOM.querySelector('#numbers-events')).toBeInTheDocument();
+    expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
   });
 });
 
