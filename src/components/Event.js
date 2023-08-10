@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getEvents } from '../api';
 
 const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
