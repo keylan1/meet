@@ -11,6 +11,11 @@ function App() {
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
 
+  useEffect(() => {
+    //populates list as soon as app component is mounted
+    fetchData();
+  }, [currentCity]);
+
   const fetchData = async () => {
     const allEvents = await getEvents();
     const filteredEvents =
@@ -20,11 +25,6 @@ function App() {
     setEvents(filteredEvents.slice(0, currentNOE)); //creates a new array from index 0 and limits the amount in currentNOE (32)
     setAllLocations(extractLocations(allEvents));
   };
-
-  useEffect(() => {
-    //populates list as soon as app component is mounted
-    fetchData();
-  }, [currentCity]);
 
   return (
     <div className="App">

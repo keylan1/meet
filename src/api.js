@@ -1,4 +1,3 @@
-import { async } from 'q';
 import mockData from './mock-data';
 
 // function takes event array and extracts the locations into a new array (Set removes duplicates)
@@ -6,6 +5,48 @@ export const extractLocations = (events) => {
   const extractedLocations = events.map((event) => event.location);
   const locations = [...new Set(extractedLocations)];
   return locations;
+};
+
+//function to fetch list of events
+export const getEvents = async () => {
+  if (window.location.href.startsWith('http://localhost')) {
+    return mockData;
+  }
+  const token = await getAccessToken();
+
+  if (token) {
+    removeQuery();
+    const url =
+      'https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' +
+      '/' +
+      token;
+    const response = await fetch(url);
+    const result = await response.json();
+    if (result) {
+      return result.events;
+    } else return null;
+  }
+};
+
+export const getAccessToken = async () => {
+  const accessToken = localStorage.getItem('access_token');
+  const tokenCheck = accessToken && (await checkToken(accessToken));
+
+  if (!accessToken || tokenCheck.error) {
+    await localStorage.removeItem('access_token');
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = await searchParams.get('code');
+    if (!code) {
+      const response = await fetch(
+        'https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
+      );
+      const result = await response.json();
+      const { authURL } = result;
+      return (window.location.href = authURL);
+    }
+    return code && getToken(code);
+  }
+  return accessToken;
 };
 
 const checkToken = async (accessToken) => {
@@ -60,45 +101,3 @@ const getToken = async (code) => {
     error.json();
   }
 }*/
-
-//function to fetch list of events
-export const getEvents = async () => {
-  if (window.location.href.startsWith('http://localhost')) {
-    return mockData;
-  }
-  const token = await getAccessToken();
-
-  if (token) {
-    removeQuery();
-    const url =
-      'https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' +
-      '/' +
-      token;
-    const response = await fetch(url);
-    const result = await response.json();
-    if (result) {
-      return result.events;
-    } else return null;
-  }
-};
-
-export const getAccessToken = async () => {
-  const accessToken = localStorage.getItem('access_token');
-  const tokenCheck = accessToken && (await checkToken(accessToken));
-
-  if (!accessToken || tokenCheck.error) {
-    await localStorage.removeItem('access_token');
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = await searchParams.get('get');
-    if (!code) {
-      const response = await fetch(
-        'https://axpyvzt1t5.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
-      );
-      const result = await response.json();
-      const { authURL } = result;
-      return (window.location.href = authURL);
-    }
-    return code && getAccessToken(code);
-  }
-  return accessToken;
-};
