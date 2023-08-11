@@ -1,9 +1,28 @@
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import { createTheme } from '@mui/material/styles';
 import './App.css';
+import { ThemeProvider } from '@emotion/react';
+import { purple } from '@mui/material/colors';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: purple[500],
+      light: '#af52bf',
+      dark: '#6d1b7b',
+    },
+    secondary: {
+      main: '#ffc400',
+      light: '#ffcf33',
+      dark: '#b28900',
+    },
+  },
+});
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -27,11 +46,16 @@ function App() {
   }, [currentCity, currentNOE]);
 
   return (
-    <div className="App">
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
-      <EventList events={events} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <CitySearch
+          allLocations={allLocations}
+          setCurrentCity={setCurrentCity}
+        />
+        <NumberOfEvents setCurrentNOE={setCurrentNOE} />
+        <EventList events={events} />
+      </div>
+    </ThemeProvider>
   );
 }
 
