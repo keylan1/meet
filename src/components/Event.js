@@ -26,6 +26,7 @@ const Event = ({ event, theme }) => {
                 <Button
                   variant="contained"
                   onClick={toggleDetails}
+                  className="details-btn"
                   sx={{ bgcolor: 'secondary.main' }}>
                   {showDetails ? 'Hide details' : 'Show details'}
                 </Button>
