@@ -44,7 +44,7 @@ describe('Filter events by city', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({
       //headless: false,
-      // slowMo: 250, // slow down by 250 ms,
+      //slowMo: 250, // slow down by 250 ms,
       //timeout: 0, // removes any puppeteer/browser timeout limitations (this isn't the same as the timeout of jest)
     });
     page = await browser.newPage();
