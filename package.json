@@ -58,6 +58,7 @@
     "@babel/plugin-transform-private-property-in-object": "^7.22.5",
     "gh-pages": "^5.0.0",
     "jest-cucumber": "^3.0.1",
-    "puppeteer": "^21.0.3"
+    "puppeteer": "^18.1.0"
+
   }
 }
