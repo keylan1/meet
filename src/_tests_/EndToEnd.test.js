@@ -36,3 +36,5 @@ describe('show/hide event details', () => {
     expect(eventDetails).toBeNull();
   });
 });
+
+describe('Filter events by city', () => {});
