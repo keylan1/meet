@@ -8,6 +8,7 @@ import { createTheme } from '@mui/material/styles';
 import './App.css';
 import { ThemeProvider } from '@emotion/react';
 import { purple } from '@mui/material/colors';
+import { InfoAlert, ErrorAlert } from './components/Alert';
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,8 @@ function App() {
   const [currentNOE, setCurrentNOE] = useState(32);
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
+  const [infoAlert, setInfoAlert] = useState('');
+  const [errorAlert, setErrorAlert] = useState('');
 
   const fetchData = async () => {
     const allEvents = await getEvents();
@@ -48,11 +51,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
+        <div className="alerts-container">
+          {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
+          {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        </div>
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
+          setInfoAlert={setInfoAlert}
         />
-        <NumberOfEvents setCurrentNOE={setCurrentNOE} />
+        <NumberOfEvents
+          setCurrentNOE={setCurrentNOE}
+          setErrorAlert={setErrorAlert}
+        />
         <EventList events={events} />
       </div>
     </ThemeProvider>
