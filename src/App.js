@@ -8,7 +8,7 @@ import { createTheme } from '@mui/material/styles';
 import './App.css';
 import { ThemeProvider } from '@emotion/react';
 import { purple } from '@mui/material/colors';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 const theme = createTheme({
   palette: {
@@ -32,6 +32,7 @@ function App() {
   const [currentCity, setCurrentCity] = useState('See all cities');
   const [infoAlert, setInfoAlert] = useState('');
   const [errorAlert, setErrorAlert] = useState('');
+  const [warningAlert, setWarningAlert] = useState('');
 
   const fetchData = async () => {
     const allEvents = await getEvents();
@@ -44,6 +45,13 @@ function App() {
   };
 
   useEffect(() => {
+    let warningText;
+    if (navigator.onLine) {
+      warningText = '';
+    } else {
+      warningText = 'Currently in offline mode';
+      setWarningAlert(warningText);
+    }
     //populates list as soon as app component is mounted
     fetchData();
   }, [currentCity, currentNOE]);
@@ -54,6 +62,7 @@ function App() {
         <div className="alerts-container">
           {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
           {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+          {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
         <CitySearch
           allLocations={allLocations}
@@ -64,7 +73,7 @@ function App() {
           setCurrentNOE={setCurrentNOE}
           setErrorAlert={setErrorAlert}
         />
-        <EventList events={events} />
+        <EventList events={events} setWarningAlert={setWarningAlert} />
       </div>
     </ThemeProvider>
   );
