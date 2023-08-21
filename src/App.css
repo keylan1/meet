@@ -88,3 +88,11 @@ input[type="number"] {
   cursor: pointer;
   border-top: 10px;
 }
+
+.alerts-container {
+  position: fixed;
+  top: 0px;
+  left: 20px;
+  width: 250px;
+  z-index: 1000;
+}
