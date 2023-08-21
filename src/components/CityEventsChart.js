@@ -22,7 +22,7 @@ const CityEventsChart = ({ events, allLocations }) => {
       const count = events.filter(
         (event) => event.location === location
       ).length;
-      const city = location.split(', ')[0]; //removing the country to have city remaining
+      const city = location.split(/, | - /)[0]; //removing the country to have city remaining
       return { city, count }; //destructuring city and count as we don't have these exact values
     });
     return data;
