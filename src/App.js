@@ -11,6 +11,7 @@ import { purple } from '@mui/material/colors';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 import CityEventsChart from './components/CityEventsChart';
 import EventGenresChart from './components/EventGenresChart';
+import { Skeleton } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -66,21 +67,45 @@ function App() {
           {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
           {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
+        {allLocations.length === 0 ? (
+          <Skeleton animation="wave" height={56} width="100%" />
+        ) : (
+          <CitySearch
+            allLocations={allLocations}
+            setCurrentCity={setCurrentCity}
+            setInfoAlert={setInfoAlert}
+          />
+        )}
+        {/*
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
           setInfoAlert={setInfoAlert}
-        />
+      />*/}
+        {events.length === 0 ? (
+          <Skeleton animation="wave" height={56} width="100%" />
+        ) : (
+          <NumberOfEvents
+            setCurrentNOE={setCurrentNOE}
+            setErrorAlert={setErrorAlert}
+          />
+        )}
+        {/*
         <NumberOfEvents
           setCurrentNOE={setCurrentNOE}
           setErrorAlert={setErrorAlert}
-        />
-
+      />*/}
         <div className="charts-container">
           <CityEventsChart allLocations={allLocations} events={events} />
           <EventGenresChart events={events} />
         </div>
-        <EventList events={events} setWarningAlert={setWarningAlert} />
+        {events.length === 0 ? (
+          <Skeleton animation="wave" height={200} width="100%" />
+        ) : (
+          <EventList events={events} setWarningAlert={setWarningAlert} />
+        )}{' '}
+        {/*
+      <EventList events={events} setWarningAlert={setWarningAlert} />*/}
       </div>
     </ThemeProvider>
   );
