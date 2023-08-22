@@ -10,6 +10,7 @@ import { ThemeProvider } from '@emotion/react';
 import { purple } from '@mui/material/colors';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 
 const theme = createTheme({
   palette: {
@@ -74,7 +75,11 @@ function App() {
           setCurrentNOE={setCurrentNOE}
           setErrorAlert={setErrorAlert}
         />
-        <CityEventsChart allLocations={allLocations} events={events} />
+
+        <div className="charts-container">
+          <CityEventsChart allLocations={allLocations} events={events} />
+          <EventGenresChart events={events} />
+        </div>
         <EventList events={events} setWarningAlert={setWarningAlert} />
       </div>
     </ThemeProvider>
