@@ -67,45 +67,65 @@ function App() {
           {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
           {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
-        {allLocations.length === 0 ? (
-          <Skeleton animation="wave" height={56} width="100%" />
-        ) : (
-          <CitySearch
-            allLocations={allLocations}
-            setCurrentCity={setCurrentCity}
-            setInfoAlert={setInfoAlert}
-          />
-        )}
-        {/*
+        <div style={{ backgroundColor: '#f9f5fa' }} className="hero-section">
+          <h1>Meet App</h1>
+          {allLocations.length === 0 ? (
+            <Skeleton animation="wave" height={56} width="100%" />
+          ) : (
+            <CitySearch
+              allLocations={allLocations}
+              setCurrentCity={setCurrentCity}
+              setInfoAlert={setInfoAlert}
+            />
+          )}
+          {/*
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
           setInfoAlert={setInfoAlert}
       />*/}
-        {events.length === 0 ? (
-          <Skeleton animation="wave" height={56} width="100%" />
-        ) : (
-          <NumberOfEvents
-            setCurrentNOE={setCurrentNOE}
-            setErrorAlert={setErrorAlert}
-          />
-        )}
-        {/*
+          {events.length === 0 ? (
+            <Skeleton animation="wave" height={56} width="100%" />
+          ) : (
+            <NumberOfEvents
+              setCurrentNOE={setCurrentNOE}
+              setErrorAlert={setErrorAlert}
+            />
+          )}
+          {/*
         <NumberOfEvents
           setCurrentNOE={setCurrentNOE}
           setErrorAlert={setErrorAlert}
       />*/}
-        <div className="charts-container">
+        </div>
+        <div
+          className="charts-container"
+          style={{ backgroundColor: '#fcf9f0', paddingBottom: '30px' }}>
+          {events.length === 0 ? (
+            <Skeleton animation="wave" height={300} width="100%" />
+          ) : (
+            <>
+              <CityEventsChart allLocations={allLocations} events={events} />
+              <EventGenresChart events={events} />
+            </>
+          )}
+          {/*
           <CityEventsChart allLocations={allLocations} events={events} />
-          <EventGenresChart events={events} />
+        <EventGenresChart events={events} /> */}
         </div>
         {events.length === 0 ? (
-          <Skeleton animation="wave" height={200} width="100%" />
+          <Skeleton animation="pulse" height={200} width="80%" />
         ) : (
           <EventList events={events} setWarningAlert={setWarningAlert} />
-        )}{' '}
+        )}
         {/*
       <EventList events={events} setWarningAlert={setWarningAlert} />*/}
+        <footer>
+          Image by{' '}
+          <a href="https://www.freepik.com/free-photo/cute-little-dog-impersonating-business-person_14724905.htm#query=fun&position=23&from_view=search&track=sph">
+            Freepik
+          </a>
+        </footer>
       </div>
     </ThemeProvider>
   );

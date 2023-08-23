@@ -13,7 +13,10 @@ const Event = ({ event, theme }) => {
   return (
     <Container>
       <li key={event.id}>
-        <Card key={event.id} id="event-card">
+        <Card
+          key={event.id}
+          id="event-card"
+          className={showDetails ? 'expanded' : ''}>
           <CardContent>
             <div className="event">
               <h2 className="event-title">{event.summary}</h2>
@@ -22,7 +25,7 @@ const Event = ({ event, theme }) => {
               {showDetails && (
                 <div className="description">{event.description}</div>
               )}
-              <CardActions>
+              <CardActions className="button-container">
                 <Button
                   variant="contained"
                   onClick={toggleDetails}
