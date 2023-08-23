@@ -1,15 +1,31 @@
-import { render, within } from '@testing-library/react';
+import {
+  render,
+  within,
+  waitFor,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
 
 describe('<App /> component', () => {
   let AppDOM;
-  beforeEach(() => {
-    AppDOM = render(<App />).container.firstChild;
+  let loadedElement;
+  beforeEach(async () => {
+    //AppDOM = render(<App />).container.firstChild;
+    /*render(<App />);
+    await screen.findByTestId('content-loaded');*/
+    render(<App />);
+    //await screen.getByTestId('content-loaded');
+    waitForElementToBeRemoved(document.querySelector('.skeleton'));
+    await waitFor(() => {
+      loadedElement = screen.getByTestId('content-loaded');
+    });
   });
   test('renders list of events', () => {
-    expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
+    expect(loadedElement).toBeInTheDocument();
+    //expect(screen.getByTestId('event-list')).toBeInTheDocument();
   });
   test('render CitySearch', () => {
     expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();

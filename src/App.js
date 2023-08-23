@@ -70,12 +70,18 @@ function App() {
         <div style={{ backgroundColor: '#f9f5fa' }} className="hero-section">
           <h1>Meet App</h1>
           {allLocations.length === 0 ? (
-            <Skeleton animation="wave" height={56} width="100%" />
+            <Skeleton
+              animation="wave"
+              height={56}
+              width="100%"
+              className="skeleton"
+            />
           ) : (
             <CitySearch
               allLocations={allLocations}
               setCurrentCity={setCurrentCity}
               setInfoAlert={setInfoAlert}
+              data-testid="city-search"
             />
           )}
           {/*
@@ -85,7 +91,12 @@ function App() {
           setInfoAlert={setInfoAlert}
       />*/}
           {events.length === 0 ? (
-            <Skeleton animation="wave" height={56} width="100%" />
+            <Skeleton
+              animation="wave"
+              height={56}
+              width="100%"
+              className="skeleton"
+            />
           ) : (
             <NumberOfEvents
               setCurrentNOE={setCurrentNOE}
@@ -102,9 +113,15 @@ function App() {
           className="charts-container"
           style={{ backgroundColor: '#fcf9f0', paddingBottom: '30px' }}>
           {events.length === 0 ? (
-            <Skeleton animation="wave" height={300} width="100%" />
+            <Skeleton
+              animation="wave"
+              height={300}
+              width="100%"
+              className="skeleton"
+            />
           ) : (
             <>
+              <h3>Charts</h3>
               <CityEventsChart allLocations={allLocations} events={events} />
               <EventGenresChart events={events} />
             </>
@@ -114,9 +131,18 @@ function App() {
         <EventGenresChart events={events} /> */}
         </div>
         {events.length === 0 ? (
-          <Skeleton animation="pulse" height={200} width="80%" />
+          <Skeleton
+            animation="pulse"
+            height={200}
+            width="80%"
+            className="skeleton"
+          />
         ) : (
-          <EventList events={events} setWarningAlert={setWarningAlert} />
+          <EventList
+            events={events}
+            setWarningAlert={setWarningAlert}
+            data-testid="content-loaded event-list"
+          />
         )}
         {/*
       <EventList events={events} setWarningAlert={setWarningAlert} />*/}
