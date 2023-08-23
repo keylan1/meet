@@ -43,7 +43,8 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       <label for="city">Search events by city</label>
       <input
         type="text"
-        className="city"
+        id="city"
+        className="city city-textbox"
         placeholder="Search for a city"
         value={query}
         onFocus={() => setShowSuggestions(true)}

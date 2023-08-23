@@ -74,14 +74,14 @@ function App() {
               animation="wave"
               height={56}
               width="100%"
-              className="skeleton"
+              data-testid="skeleton"
             />
           ) : (
             <CitySearch
               allLocations={allLocations}
               setCurrentCity={setCurrentCity}
               setInfoAlert={setInfoAlert}
-              data-testid="city-search"
+              data-testid="content-loaded city-search"
             />
           )}
           {/*
@@ -95,12 +95,13 @@ function App() {
               animation="wave"
               height={56}
               width="100%"
-              className="skeleton"
+              data-testid="skeleton"
             />
           ) : (
             <NumberOfEvents
               setCurrentNOE={setCurrentNOE}
               setErrorAlert={setErrorAlert}
+              className="content-loaded number-of-events"
             />
           )}
           {/*
@@ -117,7 +118,7 @@ function App() {
               animation="wave"
               height={300}
               width="100%"
-              className="skeleton"
+              data-testid="skeleton"
             />
           ) : (
             <>
@@ -135,7 +136,7 @@ function App() {
             animation="pulse"
             height={200}
             width="80%"
-            className="skeleton"
+            data-testid="skeleton"
           />
         ) : (
           <EventList
