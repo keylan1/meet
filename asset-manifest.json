@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/meet/static/css/main.0fdc5001.css",
-    "main.js": "/meet/static/js/main.2479fa45.js",
+    "main.css": "/meet/static/css/main.3e718d29.css",
+    "main.js": "/meet/static/js/main.2a96abec.js",
     "static/js/787.4b564826.chunk.js": "/meet/static/js/787.4b564826.chunk.js",
+    "static/media/cute-little-dog-impersonating-business-person.jpg": "/meet/static/media/cute-little-dog-impersonating-business-person.27eb2c765dbeaa9f444c.jpg",
     "service-worker.js": "/meet/service-worker.js",
     "index.html": "/meet/index.html",
-    "main.0fdc5001.css.map": "/meet/static/css/main.0fdc5001.css.map",
-    "main.2479fa45.js.map": "/meet/static/js/main.2479fa45.js.map",
+    "main.3e718d29.css.map": "/meet/static/css/main.3e718d29.css.map",
+    "main.2a96abec.js.map": "/meet/static/js/main.2a96abec.js.map",
     "787.4b564826.chunk.js.map": "/meet/static/js/787.4b564826.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0fdc5001.css",
-    "static/js/main.2479fa45.js"
+    "static/css/main.3e718d29.css",
+    "static/js/main.2a96abec.js"
   ]
 }
