@@ -36,6 +36,7 @@ function App() {
   const [infoAlert, setInfoAlert] = useState('');
   const [errorAlert, setErrorAlert] = useState('');
   const [warningAlert, setWarningAlert] = useState('');
+  const [isLoading, setIsLoading] = useState('true');
 
   const fetchData = async () => {
     const allEvents = await getEvents();
@@ -45,6 +46,7 @@ function App() {
         : allEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE)); //creates a new array from index 0 and limits the amount in currentNOE (32)
     setAllLocations(extractLocations(allEvents));
+    setIsLoading('false');
   };
 
   useEffect(() => {
@@ -69,8 +71,13 @@ function App() {
         </div>
         <div style={{ backgroundColor: '#f9f5fa' }} className="hero-section">
           <h1>Meet App</h1>
-          {allLocations.length === 0 ? (
-            <Skeleton animation="wave" height={56} width="100%" />
+          {isLoading ? (
+            <Skeleton
+              animation="wave"
+              height={56}
+              width="100%"
+              className="skeleton"
+            />
           ) : (
             <CitySearch
               allLocations={allLocations}
@@ -84,8 +91,13 @@ function App() {
           setCurrentCity={setCurrentCity}
           setInfoAlert={setInfoAlert}
       />*/}
-          {events.length === 0 ? (
-            <Skeleton animation="wave" height={56} width="100%" />
+          {isLoading ? (
+            <Skeleton
+              animation="wave"
+              height={56}
+              width="100%"
+              className="skeleton"
+            />
           ) : (
             <NumberOfEvents
               setCurrentNOE={setCurrentNOE}
@@ -101,8 +113,13 @@ function App() {
         <div
           className="charts-container"
           style={{ backgroundColor: '#fcf9f0', paddingBottom: '30px' }}>
-          {events.length === 0 ? (
-            <Skeleton animation="wave" height={300} width="100%" />
+          {isLoading ? (
+            <Skeleton
+              animation="wave"
+              height={300}
+              width="100%"
+              className="skeleton"
+            />
           ) : (
             <>
               <CityEventsChart allLocations={allLocations} events={events} />
@@ -113,8 +130,13 @@ function App() {
           <CityEventsChart allLocations={allLocations} events={events} />
         <EventGenresChart events={events} /> */}
         </div>
-        {events.length === 0 ? (
-          <Skeleton animation="pulse" height={200} width="80%" />
+        {isLoading ? (
+          <Skeleton
+            animation="pulse"
+            height={200}
+            width="80%"
+            className="skeleton"
+          />
         ) : (
           <EventList events={events} setWarningAlert={setWarningAlert} />
         )}
