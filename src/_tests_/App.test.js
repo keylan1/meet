@@ -75,7 +75,8 @@ describe('<App /> component', () => {
 describe('<App /> integration', () => {
   test('renders a list of events matching the city the user selected', async () => {
     const user = userEvent.setup();
-    render(<App />);
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
 
     await waitFor(
       () => {
@@ -90,17 +91,20 @@ describe('<App /> integration', () => {
     //await screen.findAllByTestId('content-loaded', {}, { timeout: 5000 });
     await waitForElementToBeRemoved(() => screen.queryAllByTestId('skeleton'));
 
+    const heroSectionDOM = AppDOM.querySelector('.hero-section');
+    const CitySearchDOM = heroSectionDOM.getByTestId('city-search');
+
     const CitySearchInput = screen.getByLabelText('Search events by city');
     await user.type(CitySearchInput, 'Berlin');
 
-    /*const CitySearchDOM = screen.getByTestId('city-search');
-    const berlinSuggestionItem =
+    //const CitySearchDOM = screen.getByTestId('city-search');
+    /*const berlinSuggestionItem =
       within(CitySearchDOM).getByText('Berlin, Germany');*/
 
-    const suggestionList = within(CitySearchDOM).get('.suggestions'); // Use a descendant selector here
+    /*const suggestionList = within(CitySearchDOM).get('.suggestions'); // Use a descendant selector here
     const berlinSuggestionItem =
-      within(suggestionList).getByText('Berlin, Germany');
-    const suggestionList = screen.getByRole('list');
+      within(suggestionList).getByText('Berlin, Germany');*/
+    const suggestionList = screen.getByTestID('city-suggestions');
     const berlinSuggestionItem =
       within(suggestionList).getByText('Berlin, Germany');
 

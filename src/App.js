@@ -68,7 +68,7 @@ function App() {
           {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
         <div style={{ backgroundColor: '#f9f5fa' }} className="hero-section">
-          <h1>Meet App</h1>
+          <h1>Event (Meet) App</h1>
           {allLocations.length === 0 ? (
             <Skeleton
               animation="wave"
@@ -110,6 +110,25 @@ function App() {
           setErrorAlert={setErrorAlert}
       />*/}
         </div>
+        <div>
+          {events.length === 0 ? (
+            <Skeleton
+              animation="pulse"
+              height={200}
+              width="80%"
+              data-testid="skeleton"
+            />
+          ) : (
+            <EventList
+              events={events}
+              setWarningAlert={setWarningAlert}
+              data-testid="content-loaded event-list"
+            />
+          )}
+        </div>
+        {/*
+      <EventList events={events} setWarningAlert={setWarningAlert} />*/}
+        <h2>Statistics</h2>
         <div
           className="charts-container"
           style={{ backgroundColor: '#fcf9f0', paddingBottom: '30px' }}>
@@ -122,7 +141,6 @@ function App() {
             />
           ) : (
             <>
-              <h3>Charts</h3>
               <CityEventsChart allLocations={allLocations} events={events} />
               <EventGenresChart events={events} />
             </>
@@ -131,22 +149,7 @@ function App() {
           <CityEventsChart allLocations={allLocations} events={events} />
         <EventGenresChart events={events} /> */}
         </div>
-        {events.length === 0 ? (
-          <Skeleton
-            animation="pulse"
-            height={200}
-            width="80%"
-            data-testid="skeleton"
-          />
-        ) : (
-          <EventList
-            events={events}
-            setWarningAlert={setWarningAlert}
-            data-testid="content-loaded event-list"
-          />
-        )}
-        {/*
-      <EventList events={events} setWarningAlert={setWarningAlert} />*/}
+
         <footer>
           Image by{' '}
           <a href="https://www.freepik.com/free-photo/cute-little-dog-impersonating-business-person_14724905.htm#query=fun&position=23&from_view=search&track=sph">
