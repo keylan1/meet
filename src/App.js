@@ -115,8 +115,9 @@ function App() {
           {events.length === 0 ? (
             <Skeleton
               animation="pulse"
-              height={200}
-              width="80%"
+              variant="rounded"
+              height={500}
+              width="100%"
               data-testid="skeleton"
             />
           ) : (
