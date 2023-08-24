@@ -6,7 +6,7 @@ h1:first-child {
   padding: 0;
 }
 
-h2:first-child {
+h2:last-child {
   padding-top: 15px;
   padding-bottom: 15px;
   background-color: rgb(252, 249, 240);

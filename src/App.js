@@ -69,27 +69,28 @@ function App() {
         </div>
         <div style={{ backgroundColor: '#f9f5fa' }} className="hero-section">
           <h1>Event (Meet) App</h1>
-          {allLocations.length === 0 ? (
+          {/*{allLocations.length === 0 ? (
             <Skeleton
               animation="wave"
               height={56}
               width="100%"
               data-testid="skeleton"
             />
-          ) : (
-            <CitySearch
-              allLocations={allLocations}
-              setCurrentCity={setCurrentCity}
-              setInfoAlert={setInfoAlert}
-              data-testid="content-loaded city-search"
-            />
-          )}
+          ) : ( */}
+          <CitySearch
+            allLocations={allLocations}
+            setCurrentCity={setCurrentCity}
+            setInfoAlert={setInfoAlert}
+            data-testid="content-loaded city-search"
+          />
+          {/*)}*/}
           {/*
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
           setInfoAlert={setInfoAlert}
-      />*/}
+      />*/}{' '}
+          {/*
           {events.length === 0 ? (
             <Skeleton
               animation="wave"
@@ -97,13 +98,13 @@ function App() {
               width="100%"
               data-testid="skeleton"
             />
-          ) : (
-            <NumberOfEvents
-              setCurrentNOE={setCurrentNOE}
-              setErrorAlert={setErrorAlert}
-              className="content-loaded number-of-events"
-            />
-          )}
+          ) : ( */}
+          <NumberOfEvents
+            setCurrentNOE={setCurrentNOE}
+            setErrorAlert={setErrorAlert}
+            className="content-loaded number-of-events"
+          />
+          {/*)}*/}
           {/*
         <NumberOfEvents
           setCurrentNOE={setCurrentNOE}
@@ -132,19 +133,19 @@ function App() {
         <div
           className="charts-container"
           style={{ backgroundColor: '#fcf9f0', paddingBottom: '30px' }}>
-          {events.length === 0 ? (
+          {/*{events.length === 0 ? (
             <Skeleton
               animation="wave"
               height={300}
               width="100%"
               data-testid="skeleton"
             />
-          ) : (
-            <>
-              <CityEventsChart allLocations={allLocations} events={events} />
-              <EventGenresChart events={events} />
-            </>
-          )}
+          ) : (*/}
+          <>
+            <CityEventsChart allLocations={allLocations} events={events} />
+            <EventGenresChart events={events} />
+          </>
+          {/*)}*/}
           {/*
           <CityEventsChart allLocations={allLocations} events={events} />
         <EventGenresChart events={events} /> */}
