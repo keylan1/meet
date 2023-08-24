@@ -20,8 +20,17 @@ const Event = ({ event, theme }) => {
           raised="true">
           <CardContent>
             <div className="event">
-              <h2 className="event-title">{event.summary}</h2>
-              <p className="time">{event.created}</p>
+              <h3 className="event-title">{event.summary}</h3>
+              <p className="time">
+                {new Date(event.created).toLocaleString('en-GB', {
+                  day: 'numeric',
+                  month: 'numeric',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false,
+                })}
+              </p>
               <p className="location">{event.location}</p>
               {showDetails && (
                 <div className="description">{event.description}</div>

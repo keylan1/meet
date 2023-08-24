@@ -8,7 +8,7 @@ const EventList = ({ events }) => {
       <Grid container spacing={4} className="mui-grid">
         {events
           ? events.map((event) => (
-              <Grid>
+              <Grid item xs={12} sm={6} md={4}>
                 <Event key={event.id} event={event} />
               </Grid>
             ))
