@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/meet/static/css/main.e43e161b.css",
-    "main.js": "/meet/static/js/main.341bc9eb.js",
+    "main.css": "/meet/static/css/main.e32cd6cf.css",
+    "main.js": "/meet/static/js/main.b2d14290.js",
     "static/js/787.4b564826.chunk.js": "/meet/static/js/787.4b564826.chunk.js",
     "static/media/cute-little-dog-impersonating-business-person.jpg": "/meet/static/media/cute-little-dog-impersonating-business-person.27eb2c765dbeaa9f444c.jpg",
     "service-worker.js": "/meet/service-worker.js",
     "index.html": "/meet/index.html",
-    "main.e43e161b.css.map": "/meet/static/css/main.e43e161b.css.map",
-    "main.341bc9eb.js.map": "/meet/static/js/main.341bc9eb.js.map",
+    "main.e32cd6cf.css.map": "/meet/static/css/main.e32cd6cf.css.map",
+    "main.b2d14290.js.map": "/meet/static/js/main.b2d14290.js.map",
     "787.4b564826.chunk.js.map": "/meet/static/js/787.4b564826.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e43e161b.css",
-    "static/js/main.341bc9eb.js"
+    "static/css/main.e32cd6cf.css",
+    "static/js/main.b2d14290.js"
   ]
 }
