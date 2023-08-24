@@ -17,7 +17,7 @@ describe('<Event /> component', () => {
   });
 
   test('event time is visible', async () => {
-    const formattedTime = new Date(event.created).toLocaleString('en-GB', {
+    const formattedDate = new Date(event.created).toLocaleString('en-GB', {
       day: 'numeric',
       month: 'numeric',
       year: 'numeric',
@@ -26,7 +26,10 @@ describe('<Event /> component', () => {
       hour12: false,
     });
 
-    const eventTime = await screen.findByText(formattedTime);
+    console.log('formattedDate:', formattedDate);
+    console.log('event.location:', event.location);
+
+    const eventTime = await EventComponent.findByText(formattedDate);
     expect(eventTime).toBeInTheDocument();
   });
 

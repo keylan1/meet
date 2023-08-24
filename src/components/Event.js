@@ -1,14 +1,24 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
 import { useState } from 'react';
-import { CardActions, CardContent, Container } from '@mui/material';
+import { CardActions, CardContent, Container, Typography } from '@mui/material';
 
 const Event = ({ event, theme }) => {
   const [showDetails, setShowDetails] = useState(false);
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
+
+  const formattedDate = new Date(event.created).toLocaleString('en-GB', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
 
   return (
     <Container>
@@ -17,26 +27,27 @@ const Event = ({ event, theme }) => {
           key={event.id}
           id="event-card"
           className={showDetails ? 'expanded' : ''}
-          raised="true">
-          <CardContent>
+          raised="true"
+          style={{ display: 'flex', flexDirection: 'column' }}>
+          <CardHeader
+            title={event.summary}
+            subheader={
+              <div>
+                <Typography variant="body2">{formattedDate}</Typography>
+                <Typography variant="body2">{event.location}</Typography>
+              </div>
+            }
+          />
+
+          <CardContent style={{ marginTop: 'auto' }} className="card-content">
             <div className="event">
-              <h3 className="event-title">{event.summary}</h3>
-              <p className="time">
-                {new Date(event.created).toLocaleString('en-GB', {
-                  day: 'numeric',
-                  month: 'numeric',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  hour12: false,
-                })}
-              </p>
-              <p className="location">{event.location}</p>
               {showDetails && (
                 <div className="description">{event.description}</div>
               )}
               <CardActions className="button-container">
                 <Button
+                  //style={{ marginBottom: 'auto' }}
+                  style={{ marginBottom: 0 }}
                   variant="contained"
                   onClick={toggleDetails}
                   className="details-btn"
