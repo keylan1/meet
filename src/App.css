@@ -6,7 +6,7 @@ h1:first-child {
   padding: 0;
 }
 
-h2 {
+h2:first-child {
   padding-top: 15px;
   padding-bottom: 15px;
   background-color: rgb(252, 249, 240);
@@ -71,6 +71,11 @@ input[type="number"] {
   padding-bottom: 75px;
   /*border-style: inset;*/
   background-color: rgb(252, 249, 240);
+}
+
+.MuiCard-root {
+  max-height: 300px;
+  max-width: 300px;
 }
 
 .mui-grid {
@@ -139,6 +144,11 @@ label {
   font-size: 12px;
 }
 
+/*.MuiGrid2-root {
+  max-width: 500px;
+  max-height: 500px;
+}*/
+
 .expanded {
   max-height: 400px;
   max-width: 400px;
@@ -167,4 +177,5 @@ label {
   .charts-container {
     grid-template-columns: 1fr;
   }
+
 }
