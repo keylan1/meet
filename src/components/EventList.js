@@ -3,7 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 const EventList = ({ events }) => {
   return (
-    <ul id="event-list">
+    <ul id="event-list" data-testid="event-list">
       <h1>Event List</h1>
       <Grid container spacing={4} className="mui-grid">
         {events
