@@ -73,10 +73,10 @@ input[type="number"] {
   background-color: rgb(252, 249, 240);
 }
 
-.MuiGrid2-root {
+/*.MuiContainer-root {
   max-height: 300px;
   max-width: 300px;
-}
+}*/
 
 .mui-grid {
   display: flex;
