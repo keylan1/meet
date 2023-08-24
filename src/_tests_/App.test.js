@@ -78,70 +78,15 @@ describe('<App /> integration', () => {
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
 
-    await waitFor(
-      () => {
-        const loaded = screen.queryAllByTestId('content-loaded');
-        loaded.forEach((element) => {
-          expect(element).toBeInTheDocument();
-        });
-        //expect(screen.getByTestId('content-loaded')).toBeInTheDocument();
-      },
-      { timeout: 5000 } // Adjust the timeout value as needed
-    );
-    //await screen.findAllByTestId('content-loaded', {}, { timeout: 5000 });
-    await waitForElementToBeRemoved(() => screen.queryAllByTestId('skeleton'));
-
-    const heroSectionDOM = AppDOM.querySelector('.hero-section');
-    const CitySearchDOM = heroSectionDOM.getByTestId('city-search');
-
-    const CitySearchInput = screen.getByLabelText('Search events by city');
-    await user.type(CitySearchInput, 'Berlin');
-
-    //const CitySearchDOM = screen.getByTestId('city-search');
-    /*const berlinSuggestionItem =
-      within(CitySearchDOM).getByText('Berlin, Germany');*/
-
-    /*const suggestionList = within(CitySearchDOM).get('.suggestions'); // Use a descendant selector here
-    const berlinSuggestionItem =
-      within(suggestionList).getByText('Berlin, Germany');*/
-    const suggestionList = screen.getByTestID('city-suggestions');
-    const berlinSuggestionItem =
-      within(suggestionList).getByText('Berlin, Germany');
-
-    await user.click(berlinSuggestionItem);
-
-    /*const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
-
     const CitySearchDOM = AppDOM.querySelector('#city-search');
-    const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');*/
+    const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
-    /*await user.type(CitySearchInput, 'Berlin');
+    await user.type(CitySearchInput, 'Berlin');
     const berlinSuggestionItem =
       within(CitySearchDOM).queryByText('Berlin, Germany');
-    await user.click(berlinSuggestionItem);*/
+    await user.click(berlinSuggestionItem);
 
-    /*await waitFor(() => {
-      const EventListDOM = screen.getByTestId('event-list');
-      const allRenderedEventItems =
-        within(EventListDOM).queryAllByRole('listitem');
-      const allEvents = getEvents(); // Assuming getEvents returns a Promise
-
-      // Continue with your assertions...
-      const berlinEvents = allEvents.filter(
-        (event) => event.location === 'Berlin, Germany'
-      );
-
-      expect(allRenderedEventItems.length).toBe(berlinEvents.length);
-      allRenderedEventItems.forEach(
-        (event) => {
-          //extra insurance that the relevant events are in the list
-          expect(event.textContent).toContain('Berlin, Germany');
-        } // Adjust the timeout value as needed
-      );
-      });*/
-
-    const EventListDOM = screen.getByTestId('event-list'); //needs to be done after suggestion list is clicked because EL is expected to be affected after that happens
+    const EventListDOM = AppDOM.querySelector('#event-list'); //needs to be done after suggestion list is clicked because EL is expected to be affected after that happens
     const allRenderedEventItems =
       within(EventListDOM).queryAllByRole('listitem');
 
