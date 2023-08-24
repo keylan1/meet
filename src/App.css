@@ -73,7 +73,7 @@ input[type="number"] {
   background-color: rgb(252, 249, 240);
 }
 
-.MuiCard-root {
+.MuiGrid2-root {
   max-height: 300px;
   max-width: 300px;
 }
