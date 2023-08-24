@@ -1,5 +1,5 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { render, within, waitFor } from '@testing-library/react';
+import { render, within, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { getEvents } from '../api';
@@ -19,13 +19,23 @@ defineFeature(feature, (test) => {
     });
 
     then('the user should see the list of all upcoming events.', async () => {
-      const AppDOM = AppComponent.container.firstChild;
-      const EventListDOM = AppDOM.querySelector('#event-list');
+      const EventListDOM = await screen.findByTestId('event-list');
+
+      /*AppDOM = AppComponent.container.firstChild;
+      const EventListDOM = AppDOM.querySelector('#event-list');*/
 
       await waitFor(() => {
         const EventListItems = within(EventListDOM).queryAllByRole('listitem');
         expect(EventListItems.length).toBe(32);
       });
+
+      /*const AppDOM = AppComponent.container.firstChild;
+      const EventListDOM = AppDOM.querySelector('#event-list');
+
+      await waitFor(() => {
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      });*/
     });
   });
   test('User should see a list of suggestions when they search for a city.', ({
