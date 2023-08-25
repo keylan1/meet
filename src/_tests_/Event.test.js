@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Event from '../components/Event';
 import mockData from '../mock-data';
@@ -17,7 +17,19 @@ describe('<Event /> component', () => {
   });
 
   test('event time is visible', async () => {
-    const eventTime = EventComponent.queryByText(event.created);
+    const formattedDate = new Date(event.created).toLocaleString('en-GB', {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    });
+
+    console.log('formattedDate:', formattedDate);
+    console.log('event.location:', event.location);
+
+    const eventTime = await EventComponent.findByText(formattedDate);
     expect(eventTime).toBeInTheDocument();
   });
 

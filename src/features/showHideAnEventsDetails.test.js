@@ -1,5 +1,5 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { render, within, waitFor } from '@testing-library/react';
+import { render, within, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
@@ -15,13 +15,20 @@ defineFeature(feature, (test) => {
     let EventListDOM;
     let EventListItems;
     when('the event list is present', async () => {
-      AppDOM = AppComponent.container.firstChild;
-      EventListDOM = AppDOM.querySelector('#event-list');
+      EventListDOM = await screen.findByTestId('event-list');
 
       await waitFor(() => {
         EventListItems = within(EventListDOM).queryAllByRole('listitem');
         expect(EventListItems.length).toBe(32);
       });
+
+      /*AppDOM = AppComponent.container.firstChild;
+      EventListDOM = AppDOM.querySelector('#event-list');
+
+      await waitFor(() => {
+        EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      });*/
     });
     then('the event details are collapsed by default', () => {
       const eventDetails = within(EventListItems[0]).queryByText(
@@ -45,11 +52,10 @@ defineFeature(feature, (test) => {
         let user = userEvent.setup();
         let detailsBtn;
         AppDOM = AppComponent.container.firstChild;
-        EventListDOM = AppDOM.querySelector('#event-list');
+        EventListDOM = await screen.findByTestId('event-list');
 
         await waitFor(() => {
-          const EventListItems =
-            within(EventListDOM).queryAllByRole('listitem');
+          EventListItems = within(EventListDOM).queryAllByRole('listitem');
           detailsBtn = within(EventListItems[0]).queryByText('Show details');
         });
         await user.click(detailsBtn);
@@ -75,7 +81,7 @@ defineFeature(feature, (test) => {
       const AppComponent = render(<App />);
       let detailsBtn;
       const AppDOM = AppComponent.container.firstChild;
-      let EventListDOM = AppDOM.querySelector('#event-list');
+      let EventListDOM = await screen.findByTestId('event-list');
 
       await waitFor(() => {
         const EventListItems = within(EventListDOM).queryAllByRole('listitem');
@@ -86,6 +92,22 @@ defineFeature(feature, (test) => {
       EventDOM = AppComponent.container.firstChild;
       eventDetails = EventDOM.querySelector('.description');
       expect(eventDetails).toBeInTheDocument();
+
+      /*user = userEvent.setup();
+      const AppComponent = render(<App />);
+      let detailsBtn;
+      const AppDOM = AppComponent.container.firstChild;
+      let EventListDOM = AppDOM.querySelector('#event-list');
+
+      await waitFor(() => {
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        detailsBtn = within(EventListItems[0]).queryByText('Show details');
+      });
+      await user.click(detailsBtn);
+
+      EventDOM = AppComponent.container.firstChild;
+      eventDetails = EventDOM.querySelector('.description');
+      expect(eventDetails).toBeInTheDocument();*/
     });
 
     when(

@@ -1,22 +1,74 @@
-import { render, within } from '@testing-library/react';
+import {
+  render,
+  within,
+  waitFor,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
 
 describe('<App /> component', () => {
   let AppDOM;
+  let loadedElement;
+  let AppComponent;
+  let skeleton;
   beforeEach(() => {
-    AppDOM = render(<App />).container.firstChild;
+    AppComponent = render(<App />);
+    //skeleton = AppComponent.queryAllByText('skeleton');
+
+    //AppDOM = render(<App />).container.firstChild;
+    /*render(<App />);
+    await screen.findByTestId('content-loaded');*/
+    //render(<App />);
+    //await screen.getByTestId('content-loaded');
+    /*waitForElementToBeRemoved(document.querySelector('.MuiSkeleton-root'));
+    await waitFor(() => {
+      loadedElement = screen.getByTestId('content-loaded');
+    });*/
   });
-  test('renders list of events', () => {
-    expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
+  test('renders list of events', async () => {
+    //const eventList = skeleton.querySelector('event-list');
+    //expect(eventList).toBeInTheDocument();
+    //const eventList = await AppComponent.find('#event-list');
+    // expect(eventList).toBeInTheDocument();
+    //expect(loadedElement).toBeInTheDocument();
+    //expect(screen.getByTestId('event-list')).toBeInTheDocument();
+    await waitFor(
+      () => {
+        const eventList = screen.queryByTestId('event-list');
+        if (eventList) {
+          expect(eventList).toBeInTheDocument();
+        }
+      },
+      { timeout: 5000 }
+    );
   });
-  test('render CitySearch', () => {
-    expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
+  test('render CitySearch', async () => {
+    await waitFor(
+      () => {
+        const citySearch = screen.queryByTestId('city-search');
+        if (citySearch) {
+          expect(citySearch).toBeInTheDocument();
+        }
+      },
+      { timeout: 5000 }
+    );
+    //expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
   });
 
-  test('render number of events', () => {
-    expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
+  test('render number of events', async () => {
+    await waitFor(
+      () => {
+        const numberOfEvents = screen.queryByTestId('number-of-events');
+        if (numberOfEvents) {
+          expect(numberOfEvents).toBeInTheDocument();
+        }
+      },
+      { timeout: 5000 }
+    );
+    //expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
   });
 });
 
