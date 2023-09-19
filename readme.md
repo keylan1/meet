@@ -1,7 +1,5 @@
 # Meet App
 
-# Meet App
-
 ## Project Description
 
 The Meet App is a React-based web application that provides users with the ability to discover and filter events happening in various cities. It integrates with the Google Calendar API, follows the OAuth2 authentication flow, and offers offline functionality with the help of a service worker. The app is designed to be responsive, works well on different screen sizes, and meets the Lighthouse PWA checklist criteria. Additionally, users can install the app on their desktop and add it to their mobile home screen for easy access.
@@ -45,10 +43,13 @@ Once the app is running, you can perform the following actions:
 
 Please note that the app integrates with the Google Calendar API, so authentication may be required for certain features.
 
-## Screenshot
+## Screenshots
 
 ![Event app](src/assets/Eventapp.png)
+Web view
+
 ![Mobile](src/assets/Eventphone.jpeg)
+Mobile view
 
 ## Technologies Used
 
