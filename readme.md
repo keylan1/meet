@@ -6,7 +6,7 @@ Meet App is a powerful event management application that helps users find, organ
 
 ## Screenshot
 
-![Event app](meet/src/assets/Eventapp.png)
+![Event app](src/assets/Eventapp.png)
 
 ## Serverless Functions
 
