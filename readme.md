@@ -9,6 +9,7 @@ The Meet App is a React-based web application that provides users with the abili
 - [How to Install and Run the Project](#how-to-install-and-run-the-project)
 - [How to Use the Project](#how-to-use-the-project)
 - [Screenshots](#screenshots)
+- [Link](#link)
 - [Technologies Used](#technologies-used)
 - [Credits](#credits)
 - [License](#license)
@@ -56,6 +57,10 @@ Please note that the app integrates with the Google Calendar API, so authenticat
   <em>Mobile view</em>
 </p>
 
+## Link
+
+[keylan1.github.io/meet/ ](https://keylan1.github.io/meet/)
+ 
 ## Technologies Used
 
 The Meet App is built using the following technologies:
