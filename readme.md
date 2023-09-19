@@ -8,7 +8,7 @@ The Meet App is a React-based web application that provides users with the abili
 
 - [How to Install and Run the Project](#how-to-install-and-run-the-project)
 - [How to Use the Project](#how-to-use-the-project)
-- [Screenshots] (#screenshots)
+- [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
 - [Credits](#credits)
 - [License](#license)
@@ -45,11 +45,16 @@ Please note that the app integrates with the Google Calendar API, so authenticat
 
 ## Screenshots
 
-![Event app](src/assets/Eventapp.png)
-Web view
-
-![Mobile](src/assets/Eventphone.jpeg)
-Mobile view
+<p align="center">
+  <img src="src/assets/Eventapp.png" alt="Event app" width="600">
+  <br>
+  <em>Web view</em>
+</p>
+<p align="center">
+  <img src="src/assets/Eventphone.jpeg" alt="Mobile" width="300">
+  <br>
+  <em>Mobile view</em>
+</p>
 
 ## Technologies Used
 
